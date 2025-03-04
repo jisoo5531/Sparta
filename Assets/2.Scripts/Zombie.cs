@@ -8,7 +8,11 @@ public class Zombie : MonoBehaviour
 
     public bool isZombieTouch = false;
 
-    private bool isFirstCreate = true;
+    private Rigidbody2D rigid;
+
+    private float pushPower = 1f;
+    private bool isPush = false;
+    private bool isJumpZombie = false;
     private bool isJump = false;
 
     public enum ZombieOrder
@@ -21,6 +25,7 @@ public class Zombie : MonoBehaviour
 
     private void Awake()
     {
+        rigid = GetComponent<Rigidbody2D>();
         SpriteRenderer[] sprites = GetComponentsInChildren<SpriteRenderer>();
         int orderPlus = 0;
         switch (zombieOrder)
@@ -43,17 +48,26 @@ public class Zombie : MonoBehaviour
         }
 
         GameManager.Instance.PushLast(this);
-        isFirstCreate = true;
+        isJumpZombie = true;
     }
 
     private void Update()
     {
+
         transform.Translate(Vector3.left * Time.deltaTime * speed);
+    }
+    private void FixedUpdate()
+    {        
+        if (false == isPush || (GetInstanceID() != GameManager.Instance.zombiesList.Last.Value.GetInstanceID()))
+            return;
+        Debug.Log("밀어내기 실행");
+        rigid.mass *= 0.5f;
+        GameManager.Instance.zombiesList.First.Value.GetComponent<Rigidbody2D>().AddForce(Vector3.right * 10f);        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Hero") && false == isFirstCreate)
+        if (collision.gameObject.CompareTag("Hero") && isJump)
         {
             Debug.Log("타워 부딪혔다.");
             StartCoroutine(PushAction());
@@ -65,13 +79,10 @@ public class Zombie : MonoBehaviour
     }
 
     private void OnCollisionStay2D(Collision2D collision)
-    {
-        isZombieTouch = true;
-
-        if (isJump)
-        {
+    {        
+        if (isJump)        
             return;
-        }
+        
         if (collision.gameObject.CompareTag("Zombie") && (GetInstanceID() == GameManager.Instance.zombiesList.Last.Value.GetInstanceID()))
         {
             StartCoroutine(JumpAction());
@@ -88,14 +99,15 @@ public class Zombie : MonoBehaviour
 
     IEnumerator PushAction()
     {
-        GetComponent<Rigidbody2D>().mass *= 5f;
+        isPush = true;
+        pushPower = 1f;
 
-        GameManager.Instance.zombiesList.First.Value.GetComponent<Rigidbody2D>().AddForce(Vector3.right * 5f, ForceMode2D.Impulse);
+        yield return new WaitUntil(() => isJump == false);
 
-        yield return new WaitForSeconds(0.1f);
-
-        GetComponent<Rigidbody2D>().mass /= 5f;
-
+        isPush = false;
+        rigid.mass = 1;
+        GameManager.Instance.zombiesList.First.Value.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        GameManager.Instance.Delete();
         GameManager.Instance.Push(this);
     }
 
@@ -107,8 +119,5 @@ public class Zombie : MonoBehaviour
         rigid.AddForce(Vector3.up * 5f, ForceMode2D.Impulse);        
 
         yield return new WaitForSeconds(0.5f);
-
-        isFirstCreate = false;
-        GameManager.Instance.Delete();
     }
 }
