@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Instantiate(zombiePrefab, new Vector3(6, 0, 0), Quaternion.identity);            
+            Instantiate(zombiePrefab, new Vector3(6, -3f, 0), Quaternion.identity);            
         }
     }
 

@@ -7,6 +7,7 @@ TagManager:
   - Hero
   - Zombie
   - Ground
+  - Head
   layers:
   - Default
   - TransparentFX

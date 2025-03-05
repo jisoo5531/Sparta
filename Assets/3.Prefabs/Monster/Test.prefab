@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1174570720321624928}
   - component: {fileID: 7016750400611631704}
-  - component: {fileID: 5472763303600934969}
   - component: {fileID: 8399031501790450527}
   - component: {fileID: 483821851585220138}
+  - component: {fileID: -5697372364052398538}
   m_Layer: 0
-  m_Name: ZombieMelee
+  m_Name: Test
   m_TagString: Zombie
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -57,21 +57,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &5472763303600934969
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 319310827380095937}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d317657a23ddd444793513e12cbed71f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 1.5
-  isZombieTouch: 0
-  zombieOrder: 0
 --- !u!50 &8399031501790450527
 Rigidbody2D:
   serializedVersion: 4
@@ -88,7 +73,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 6200000, guid: c0b570f2de4298443bad93af56a55bf4, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -97,7 +82,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!70 &483821851585220138
 CapsuleCollider2D:
@@ -131,9 +116,22 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.15, y: 0.47}
-  m_Size: {x: 0.6, y: 1.08}
+  m_Offset: {x: -0.15, y: 0.29}
+  m_Size: {x: 0.6, y: 0.74}
   m_Direction: 0
+--- !u!114 &-5697372364052398538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 319310827380095937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a16c9d4669f7c341990fd0693530969, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 1.5
 --- !u!1 &2094693183665648150
 GameObject:
   m_ObjectHideFlags: 0
