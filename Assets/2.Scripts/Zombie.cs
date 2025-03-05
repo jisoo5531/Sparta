@@ -5,8 +5,7 @@ using UnityEngine;
 public class Zombie : MonoBehaviour
 {
     public float speed;
-
-    public bool isZombieTouch = false;
+    
 
     private Rigidbody2D rigid;
 
@@ -14,10 +13,7 @@ public class Zombie : MonoBehaviour
     
     private bool isPush = false;
     private bool isJumpZombie = false;
-    private bool isJump = false;
-    private bool isTower = false;    
-    private bool isGround;        
-    private Vector2 lastVelocity;
+    private bool isJump = false;    
 
     private Zombie pushZombie;
 
@@ -47,24 +43,15 @@ public class Zombie : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // 이동        
-        rigid.velocity = new Vector2(-speed, rigid.velocity.y);        
-
-        // 점프 실행
+        Move();
+                   
         if (isJump)
         {
-            Debug.Log("점프 실행!");
-
-            rigid.velocity = new Vector2(rigid.velocity.x, 0f); // 기존 속도 초기화 (더 자연스러움)
-            rigid.AddForce(Vector2.up * jumpPower / 2f, ForceMode2D.Impulse);
-            //StartCoroutine(SmoothJump());
-            isJump = false; // 점프 후 초기화            
+            Jump();
         }
         if (isPush && GameManager.Instance.isPushActive)
         {
-            
-            Debug.Log($"기다리는 좀비 수 : {GameManager.Instance.zombieWaitingList.Count}");
-            pushZombie.GetComponent<Rigidbody2D>().AddForce(Vector2.right * 110f * Mathf.Max(1, GameManager.Instance.GetWaitCount()));
+            Push();
         }
     }
 
@@ -82,36 +69,38 @@ public class Zombie : MonoBehaviour
             GameManager.Instance.AddWaiting(this);            
         }
         if (collision.gameObject.CompareTag("Hero") && isJumpZombie)
-        {
-            Debug.Log("타워 부딪혔다.");
+        {            
             GameManager.Instance.AddWaiting(this);
             StartCoroutine(PushAction());
         }        
         if (collision.gameObject.CompareTag("Ground") || collision.contacts[0].normal.y > 0.5f)
         {
-            isJump = false;
-            isGround = true;
-            
+            isJump = false;                        
         }
     }
 
     private void OnCollisionStay2D(Collision2D collision)
-    {
-           
-        Debug.Log("무언가 계속 접촉 중");
+    {                   
         if (isJump)
         {
             return;
         }
 
         if (collision.gameObject.CompareTag("Zombie") && GameManager.Instance.IsPossibleJump(this))
-        {
-            Jump();
-
-            
-            Debug.Log($"점프한다.!!");
+        {            
+            isJump = true;
+            isJumpZombie = true;                        
         }
+    }
 
+    private void Move()
+    {
+        // 이동        
+        rigid.velocity = new Vector2(-speed, rigid.velocity.y);
+    }
+    private void Push()
+    {        
+        pushZombie.GetComponent<Rigidbody2D>().AddForce(Vector2.right * 110f * Mathf.Max(1, GameManager.Instance.GetWaitCount()));
     }
     IEnumerator PushAction()
     {
@@ -119,20 +108,20 @@ public class Zombie : MonoBehaviour
         GameManager.Instance.isPushActive = true;
         isPush = true;        
 
-        yield return new WaitForSeconds(0.7f);
+        yield return new WaitForSeconds(0.5f);
 
         isPush = false;
         
         rigid.mass = 1;
-        GameManager.Instance.isPushActive = false;
-        //GameManager.Instance.Delete(this);
-        //GameManager.Instance.PushFirst(this);        
+        GameManager.Instance.isPushActive = false;        
     }
 
     private void Jump()
     {
-        isJump = true;
-        isJumpZombie = true;        
-        isGround = false;
+        Debug.Log("점프 실행!");
+
+        rigid.velocity = new Vector2(rigid.velocity.x, 0f); // 기존 속도 초기화
+        rigid.AddForce(Vector2.up * jumpPower / 2f, ForceMode2D.Impulse);        
+        isJump = false; // 점프 후 초기화      
     }  
 }

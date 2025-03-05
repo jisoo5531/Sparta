@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
 
     public List<Zombie> zombies;    // test
     public LinkedList<Zombie> zombiesList = new LinkedList<Zombie>();
-    public LinkedList<Zombie> zombieWaitingList = new LinkedList<Zombie>();
+    public LinkedList<Zombie> zombieWaitingList = new LinkedList<Zombie>();    
 
     public bool isPushActive = false;
         
