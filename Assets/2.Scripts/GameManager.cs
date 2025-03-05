@@ -8,8 +8,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject zombiePrefab;
     public Transform firstZombieTrans;
-
-    public List<Zombie> zombies;    // test
+    
     public LinkedList<Zombie> zombiesList = new LinkedList<Zombie>();
     public LinkedList<Zombie> zombieWaitingList = new LinkedList<Zombie>();    
 
@@ -96,11 +95,7 @@ public class GameManager : MonoBehaviour
     {
         if (zombiesList.Count == 1)
             return false;
-
-        
-        float rayDistance = 2f;
-        //Debug.DrawRay(new Vector2(zombie.transform.position.x, zombie.transform.position.y + 0.1f), Vector2.right * rayDistance, Color.red);
-        //Debug.DrawRay(new Vector2(zombie.transform.position.x + 0.3f, zombie.transform.position.y + 0.5f), Vector2.up * rayDistance, Color.red);
+                      
         RaycastHit2D hitRight = Physics2D.Raycast(new Vector2(zombie.transform.position.x + 0.3f, zombie.transform.position.y + 0.5f), Vector2.right, 2f);
         RaycastHit2D hitUp = Physics2D.Raycast(new Vector2(zombie.transform.position.x + 0.3f, zombie.transform.position.y + 0.5f), Vector2.up, 2);
         RaycastHit2D hitLeft = Physics2D.Raycast(new Vector2(zombie.transform.position.x, zombie.transform.position.y + 1.3f), Vector2.left, 0.5f);      
