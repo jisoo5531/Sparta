@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5472763303600934969}
   - component: {fileID: 8399031501790450527}
   - component: {fileID: 483821851585220138}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ZombieMelee
   m_TagString: Zombie
   m_Icon: {fileID: 0}
@@ -131,8 +131,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.15, y: 0.47}
-  m_Size: {x: 0.6, y: 1.08}
+  m_Offset: {x: -0.15, y: 0.52}
+  m_Size: {x: 0.6, y: 1.1}
   m_Direction: 0
 --- !u!1 &2094693183665648150
 GameObject:
@@ -143,7 +143,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5549818585384498318}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: headPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -176,7 +176,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1395318751277446472}
   - component: {fileID: 7928511827763145290}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: arm_r
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -259,7 +259,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4491516224192526601}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: leg_lPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -292,7 +292,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1390984449423877832}
   - component: {fileID: 6012614561082821375}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: leg_l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -376,9 +376,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4117193198607075230}
   - component: {fileID: 7969222207150852787}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: body
-  m_TagString: Zombie
+  m_TagString: Body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -459,7 +459,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5034332594619086819}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: arm_lPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -492,9 +492,9 @@ GameObject:
   m_Component:
   - component: {fileID: 9047505522530119778}
   - component: {fileID: 4391178048448326450}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: head
-  m_TagString: Head
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -575,7 +575,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4121376888754406373}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: arm_rPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -607,7 +607,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1639109334033341928}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: bodyPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -645,7 +645,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1795158308826264389}
   - component: {fileID: 2228757155372488290}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: leg_r
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -729,7 +729,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2488240717351641533}
   - component: {fileID: 6851911621866096364}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: arm_l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -812,7 +812,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8238610049920116614}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: leg_rPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
