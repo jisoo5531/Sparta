@@ -27,18 +27,14 @@ public class Melee : Zombie
     protected override void Move()
     {
         // 이동        
-        rigid.velocity = new Vector2(-speed, rigid.velocity.y);
+        base.Move();
     }
     protected override void Jump()
     {
-        Debug.Log("점프 실행!");
-
-        rigid.velocity = new Vector2(rigid.velocity.x, 0f); // 기존 속도 초기화
-        rigid.AddForce(Vector2.up * jumpPower / 2f, ForceMode2D.Impulse);
-        isJump = false; // 점프 후 초기화      
+        base.Jump();
     }
     protected override void Push()
     {
-        pushZombie.GetComponent<Rigidbody2D>().AddForce(Vector2.right * 120f * Mathf.Max(1, GameManager.Instance.GetWaitCount()));
+        base.Push();
     }
 }

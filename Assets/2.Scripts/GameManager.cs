@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     public LinkedList<Zombie> zombieWaitingList = new LinkedList<Zombie>();    
 
     public bool isPushActive = false;
+    public float pushPower = 0f;
+    
         
     private void Awake()
     {
@@ -24,6 +26,13 @@ public class GameManager : MonoBehaviour
         {
             Instantiate(zombiePrefab, new Vector3(6, -3f, 0), Quaternion.identity);                        
         }
+    }
+    private void FixedUpdate()
+    {
+        //if (isPushActive)
+        //{
+        //    FindCloseZombie().GetComponent<Rigidbody2D>().AddForce(Vector2.right * 120f * Mathf.Max(1, GetWaitCount()));
+        //}
     }
 
     public Zombie FindCloseZombie()
@@ -98,11 +107,17 @@ public class GameManager : MonoBehaviour
                       
         RaycastHit2D hitRight = Physics2D.Raycast(new Vector2(zombie.transform.position.x + 0.3f, zombie.transform.position.y + 0.5f), Vector2.right, 2f);
         RaycastHit2D hitUp = Physics2D.Raycast(new Vector2(zombie.transform.position.x + 0.3f, zombie.transform.position.y + 0.5f), Vector2.up, 2);
-        RaycastHit2D hitLeft = Physics2D.Raycast(new Vector2(zombie.transform.position.x, zombie.transform.position.y + 1.3f), Vector2.left, 0.5f);      
-        
-        if (hitRight.collider == null && hitUp.collider == null && hitLeft.collider == null)
+        RaycastHit2D hitLeft = Physics2D.Raycast(new Vector2(zombie.transform.position.x, zombie.transform.position.y + 1.3f), Vector2.left, 0.5f);
+        RaycastHit2D DetectZombie = Physics2D.Raycast(new Vector2(zombie.transform.position.x - 0.5f, zombie.transform.position.y + 0.5f), Vector2.left, 0.25f);
+
+                
+
+        if (hitRight.collider == null && hitUp.collider == null && hitLeft.collider == null && DetectZombie.collider != null)
         {
-            return true;
+            if (DetectZombie.collider.tag.Equals("Zombie") && false == DetectZombie.collider.GetComponent<Zombie>().Equals(zombie))
+            {
+                return true;
+            }            
         }
         return false;
     }
