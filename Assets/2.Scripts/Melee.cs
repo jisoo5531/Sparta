@@ -5,19 +5,6 @@ using UnityEngine;
 public class Melee : Zombie
 {            
 
-    //public enum ZombieOrder
-    //{
-    //    First,
-    //    Second,
-    //    Third
-    //}
-    //public ZombieOrder zombieOrder;
-
-    //private void Awake()
-    //{
-        
-    //    SpriteRenderer[] sprites = GetComponentsInChildren<SpriteRenderer>();
-    //}
     protected override void Init()
     {
         base.Init();

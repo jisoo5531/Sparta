@@ -8,11 +8,14 @@ public class Zombie : MonoBehaviour
     [SerializeField] protected float jumpPower;
     protected Rigidbody2D rigid;
 
+    // 점프한 좀비만이 밀어낼 수 있게끔 하는 플래그 변수
     protected bool isPush = false;
+    // 점프한 좀비인지 확인
     protected bool isJumpZombie = false;
     protected bool isJump = false;
     protected bool isGround = false;
 
+    // 현재 밀고 있는 좀비
     protected Zombie currPushZombie;
 
     private void Awake()
@@ -23,18 +26,7 @@ public class Zombie : MonoBehaviour
     protected virtual void Init()
     {
 
-    }
-    private void Update()
-    {
-        
-        Debug.DrawRay(new Vector2(transform.position.x + 0.3f, transform.position.y + 0.5f), Vector2.right * 2f, Color.red);
-        Debug.DrawRay(new Vector2(transform.position.x + 0.3f, transform.position.y + 0.5f), Vector2.up * 2f, Color.blue);
-        Debug.DrawRay(new Vector2(transform.position.x, transform.position.y + 1.3f), Vector2.left * 0.5f, Color.yellow);
-        Debug.DrawRay(new Vector2(transform.position.x - 0.3f, transform.position.y + 0.5f), Vector2.left * 0.25f, Color.black);
-        Debug.DrawRay(new Vector2(transform.position.x, transform.position.y), Vector2.down * 0.1f, Color.white);
-        //RaycastHit2D hitDown = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y + 1.3f), Vector2.down, 1f);
-
-    }
+    }    
     private void FixedUpdate()
     {
         Move();
